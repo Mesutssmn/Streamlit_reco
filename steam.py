@@ -286,7 +286,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! anime column
     image_airbnb = "https://media1.tenor.com/m/rsSIoLjds9UAAAAC/airbnb-door.gif"
-    redirect_airbnb = "https://store.steampowered.com/"
+    redirect_airbnb = "https://animerecommendations.streamlit.aspp/"
 
     html_airbnb = f"""
     <div style="position: relative; width: 150px; height: 150px;">
