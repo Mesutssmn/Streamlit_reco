@@ -102,14 +102,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown(
-    """
-    <div class="resizable-image">
-        <img src="https://camo.githubusercontent.com/d6071165f118647cd11619ed34fb9f18fe75e2b48656296ee8de22fcfdf1a9cd/68747470733a2f2f6d656469612e74656e6f722e636f6d2f2d6d5f70797974655f674541414141642f77656c636f6d652d7265647461696c732e676966" alt="Resim">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
 col1, col2, col3, col4, col5 = st.columns(5)
 
 col1.markdown(
@@ -187,10 +179,44 @@ home_tab, steam_tab = st.tabs(["Home", "GameSelect"])
 with home_tab.container():
     set_active_tab('Home')
 
-    #col1, col2, col3 = home_tab.columns([1,2,1])  # Genişlikleri ayarlamak için oranları değiştirdik
+with home_tab:
+        home_tab.markdown(
+        """
+        <div class="title-background">Top Games</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        col1, col2, col3 = home_tab.columns([1,0.8,1])
 
-
-    home_tab.markdown(
+        col1.markdown(
+        """
+        <iframe width="550" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
+        if not upcoming_games_df.empty:
+            col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        else:
+            col2.write("No upcoming games found.")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        col3.markdown(
+        """
+        <iframe width="600" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
+        home_tab.markdown(
     """
     <style>
     .title-background {
@@ -206,12 +232,13 @@ with home_tab.container():
     """,
     unsafe_allow_html=True
 )
-    home_tab.markdown('<div class="title-background">Play a Game</div>', unsafe_allow_html=True)
-    home_tab.write("")
-    home_tab.write("")
-    home_tab.write("")
-    home_tab.write("")
-    home_tab.markdown(
+        home_tab.markdown('<div class="title-background">Play a Game</div>', unsafe_allow_html=True)
+
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.markdown(
     """
     <style>
     .iframe-container {
@@ -233,61 +260,22 @@ with home_tab.container():
     unsafe_allow_html=True,
 )
     
-    home_tab.markdown(
-        """
-        <div class="iframe-container">
-            <iframe src="https://games.construct.net/1690/latest"></iframe>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-
-
-
-with home_tab:
         home_tab.markdown(
-        """
-        <div class="title-background">Top Games</div>
-        <div class="custom-divider"></div>
-        """,
-        unsafe_allow_html=True,
-    )
-        home_tab.write("")
-        home_tab.write("")
-        col1, col2, col3 = home_tab.columns([1,0.8,1])
-
-        col1.markdown(
-        """
-        <iframe width="550" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        """,
-        unsafe_allow_html=True
-    )
-        if not upcoming_games_df.empty:
-            col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
-        else:
-            col2.write("No upcoming games found.")
-        home_tab.write("")
-        home_tab.write("")
-        
-        col3.markdown(
-        """
-        <iframe width="600" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        """,
-        unsafe_allow_html=True
-    )
+            """
+            <div class="iframe-container">
+                <iframe src="https://games.construct.net/1690/latest"></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 
 home_tab.write("")
 home_tab.write("")
 home_tab.write("")
 home_tab.write("")
-
+home_tab.write("")
+home_tab.write("")
 
 home_tab.markdown('<div class="title-background">Discover Your Next Adventure!</div>', unsafe_allow_html=True)
 home_tab.write("")
