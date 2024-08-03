@@ -338,7 +338,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
     <div style="position: relative; width: 150px; height: 150px;">
         <a href="{redirect_anime}" target="_blank">
             <img src="{image_anime}" style="width:150px;height:150px;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">AIRBNB</div>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">ANIME</div>
         </a>
     </div>
     """
