@@ -260,10 +260,26 @@ with home_tab:
     )
         home_tab.write("")
         home_tab.write("")
+        col1, col2, col3 = home_tab.columns([1,1,1])
         if not upcoming_games_df.empty:
-            home_tab.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+            col1.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
         else:
-            home_tab.write("No upcoming games found.")
+            col1.write("No upcoming games found.")
+        home_tab.write("")
+        home_tab.write("")
+        col2.markdown(
+        """
+        <iframe width="550" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
+        col3.markdown(
+        """
+        <iframe width="550" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
+
 
 home_tab.write("")
 home_tab.write("")
