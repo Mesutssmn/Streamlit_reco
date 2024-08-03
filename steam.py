@@ -260,22 +260,24 @@ with home_tab:
     )
         home_tab.write("")
         home_tab.write("")
-        col1, col2, col3 = home_tab.columns([1,1,1])
-        if not upcoming_games_df.empty:
-            col1.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
-        else:
-            col1.write("No upcoming games found.")
-        home_tab.write("")
-        home_tab.write("")
-        col2.markdown(
+        col1, col2, col3 = home_tab.columns([1,0.8,1])
+
+        col1.markdown(
         """
         <iframe width="550" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         """,
         unsafe_allow_html=True
     )
+        if not upcoming_games_df.empty:
+            col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        else:
+            col2.write("No upcoming games found.")
+        home_tab.write("")
+        home_tab.write("")
+        
         col3.markdown(
         """
-        <iframe width="550" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="600" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         """,
         unsafe_allow_html=True
     )
