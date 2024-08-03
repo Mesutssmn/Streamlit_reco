@@ -284,7 +284,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     col1, col2, col3, col4, col5, col6 = st.columns([1, 0.45, 0.45, 0.45, 1,0.5], gap='large')
 
-    # ! anime column
+    # ! airbnb column
     image_airbnb = "https://media1.tenor.com/m/rsSIoLjds9UAAAAC/airbnb-door.gif"
     redirect_airbnb = "https://animerecommendations.streamlit.app/"
 
@@ -330,20 +330,19 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     col4.markdown(html_amazon, unsafe_allow_html=True)
 
-    # ! steam column
-    image_steam = "https://media1.tenor.com/m/zjbXreUb5_YAAAAd/steam.gif"
-    redirect_steam = "https://store.steampowered.com/"
+    # ! anime column
+    image_anime = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2NrbXY3a3ptbDY0d256N2dtN2xkOTV1eXpnMGpvbG5obWlla29mZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11KzOet1ElBDz2/giphy.webp"
+    redirect_anime = "https://animerecommendations.streamlit.app/"
 
-    html_steam = f"""
+    html_anime = f"""
     <div style="position: relative; width: 150px; height: 150px;">
-        <a href="{redirect_steam}" target="_blank">
-            <img src="{image_steam}" style="width:150px;height:150px;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">GAME</div>
+        <a href="{redirect_anime}" target="_blank">
+            <img src="{image_anime}" style="width:150px;height:150px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">AIRBNB</div>
         </a>
     </div>
     """
-
-    col5.markdown(html_steam, unsafe_allow_html=True)
+    col5.markdown(html_anime, unsafe_allow_html=True)
 
 
 
