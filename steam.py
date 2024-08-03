@@ -214,7 +214,52 @@ with home_tab.container():
         else:
             col1.write("No upcoming games found.")
 
+    with col2:
+        col2.markdown(
+        """
+        <style>
+        .custom-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .custom-divider {
+            width: 100%;
+            border: 1px solid #0002d1;
+            margin-bottom: 1rem;
+        }
+        </style>
+        <div class="custom-header">Play a Game</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
+        
 
+
+        
+        col2.markdown(
+    """
+    <style>
+    .iframe-container {
+        width: 150%;
+        height: 430px;
+        display: flex;
+        justify-content: left;
+        align-items: left;
+    }
+    .iframe-container iframe {
+        width: 70%;
+        height: 100%;
+        border: none;
+    }
+    </style>
+    <div class="iframe-container">
+        <iframe src="https://games.construct.net/1690/latest"></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 home_tab.write("")
 home_tab.write("")
