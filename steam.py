@@ -160,8 +160,8 @@ col5.markdown(
 st.markdown(
     """
     <div style="text-align: center;">
-        <h1 style="color: #0002d1 ;">Discover a New World</h1>
-        <hr style="border: none; border-top: 2px solid darkblue;">
+        <h1 style="color: #A0622D ;">Discover a New World</h1>
+        <hr style="border: none; border-top: 2px solid #A0622D;">
     </div>
     """,
     unsafe_allow_html=True,
@@ -170,7 +170,7 @@ st.markdown(
     """
     <div style="text-align: center;">
         <h1 style="color: #999999 ; font-size: 20px;">Level up your gaming experience with our curated game recommendations. From action-packed adventures to mind-bending puzzles, find the perfect game to keep you entertained for hours.</h1>
-        <hr style="border: none; border-top: 2px solid darkblue;">
+        <hr style="border: none; border-top: 2px solid #A0622D;">
     </div>
     """,
     unsafe_allow_html=True,
@@ -187,152 +187,158 @@ home_tab, steam_tab = st.tabs(["Home", "GameSelect"])
 with home_tab.container():
     set_active_tab('Home')
 
-    col1, col2, col3 = home_tab.columns([2,2,1])  # Genişlikleri ayarlamak için oranları değiştirdik
-
-    with col1:
-        col1.markdown(
-        """
-        <style>
-        .custom-header {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .custom-divider {
-            width: 50%;
-            border: 1px solid #0002d1;
-            margin-bottom: 1rem;
-        }
-        </style>
-        <div class="custom-header">Top Games</div>
-        <div class="custom-divider"></div>
-        """,
-        unsafe_allow_html=True,
-    )
-        if not upcoming_games_df.empty:
-            col1.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
-        else:
-            col1.write("No upcoming games found.")
-
-    with col2:
-        col2.markdown(
-        """
-        <style>
-        .custom-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .custom-divider {
-            width: 100%;
-            border: 1px solid #0002d1;
-            margin-bottom: 1rem;
-        }
-        </style>
-        <div class="custom-header">Play a Game</div>
-        <div class="custom-divider"></div>
-        """,
-        unsafe_allow_html=True,
-    )
-        
+    #col1, col2, col3 = home_tab.columns([1,2,1])  # Genişlikleri ayarlamak için oranları değiştirdik
 
 
-        
-        col2.markdown(
+    home_tab.markdown(
+    """
+    <style>
+    .title-background {
+        background-color: #A0622D; /* Background color */
+        color: black; /* Text color */
+        padding: 10px; /* Padding for spacing */
+        text-align: center; /* Center align text */
+        border-radius: 100px; /* Rounded corners */
+        font-size: 32px; /* Font size */
+        font-weight: bold; /* Font weight */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+    home_tab.markdown('<div class="title-background">Play a Game</div>', unsafe_allow_html=True)
+    home_tab.write("")
+    home_tab.write("")
+    home_tab.write("")
+    home_tab.write("")
+    home_tab.markdown(
     """
     <style>
     .iframe-container {
-        width: 150%;
-        height: 430px;
+        width: 850px; /* Aynı genişlik */
+        height: 500px;
         display: flex;
-        justify-content: left;
-        align-items: left;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto; /* Ortalamak için */
+        margin-right: auto; /* Ortalamak için */
     }
     .iframe-container iframe {
-        width: 70%;
+        width: 1000px; /* Aynı genişlik */
         height: 100%;
         border: none;
     }
     </style>
-    <div class="iframe-container">
-        <iframe src="https://games.construct.net/1690/latest"></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.markdown(
-        """
-        <style>
-        .custom-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .custom-divider {
-            width: 100%;
-            border: 1px solid #0002d1;
-            margin-bottom: 1rem;
-        }
-        </style>
-        <div class="custom-header">If You Want to Do Something Else, You Can Visit These Pages.</div>
-        <div class="custom-divider"></div>
-        """,
-        unsafe_allow_html=True,
-    )      
-
-
-col1, col2, col3, col4, col5 = home_tab.columns(5)
-
-col1.markdown(
-    """
-    <div class="resizable-image">
-        <img src="https://media1.tenor.com/m/t1KbzWJ9sGkAAAAd/elden-ring-action-rpg.gif" alt="Resim">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-col2.markdown(
-    """
-    <div class="resizable-image">
-        <img src="https://media1.tenor.com/m/Z5t0eehZn3gAAAAd/darksiders_2-prince-of-persia.gif" alt="Resim">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-col3.markdown(
-    """
-    <div class="resizable-image">
-        <img src="https://media1.tenor.com/m/sctssthXIm8AAAAC/play-game.gif" alt="Resim">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-col4.markdown(
-    """
-    <div class="resizable-image">
-        <img src="https://media1.tenor.com/m/BDValJzc6P4AAAAC/rdr2.gif" alt="Resim">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-col5.markdown(
-    """
-    <div class="resizable-image">
-        <img src="https://media1.tenor.com/m/COG1mdmj0X0AAAAd/swtor-the-old-republic.gif" alt="Resim">
-    </div>
     """,
     unsafe_allow_html=True,
 )
     
+    home_tab.markdown(
+        """
+        <div class="iframe-container">
+            <iframe src="https://games.construct.net/1690/latest"></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+
+
+
+with home_tab:
+        home_tab.markdown(
+        """
+        <div class="title-background">Top Games</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
+        home_tab.write("")
+        home_tab.write("")
+        if not upcoming_games_df.empty:
+            home_tab.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        else:
+            home_tab.write("No upcoming games found.")
+
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+
+
+home_tab.markdown('<div class="title-background">Discover Your Next Adventure!</div>', unsafe_allow_html=True)
+home_tab.write("")
+home_tab.write("")
+with home_tab.container():  # 'home_tab' yerine st.container kullanın
+
+    col1, col2, col3, col4, col5, col6 = st.columns([1, 0.45, 0.45, 0.45, 1,0.5], gap='large')
+
+    # ! anime column
+    image_airbnb = "https://media1.tenor.com/m/rsSIoLjds9UAAAAC/airbnb-door.gif"
+    redirect_airbnb = "https://store.steampowered.com/"
+
+    html_airbnb = f"""
+    <div style="position: relative; width: 150px; height: 150px;">
+        <a href="{redirect_airbnb}" target="_blank">
+            <img src="{image_airbnb}" style="width:150px;height:150px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">AIRBNB</div>
+        </a>
+    </div>
+    """
+
+    col2.markdown(html_airbnb, unsafe_allow_html=True)
+
+
+    # ! imdb column
+    image_movie = 'https://media.tenor.com/HJTXKCtOYwgAAAAM/perfect-popcorn.gif'
+    redirect_movie = "https://appent-g9qe2nhwhrvvgnhkqybvzq.streamlit.app/"
+
+    html_movie = f"""
+    <div style="position: relative; width: 150px; height: 150px;">
+        <a href="{redirect_movie}" target="_blank">
+            <img src="{image_movie}" style="width:150px;height:150px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">MOVIE</div>
+        </a>
+    </div>
+    """
+
+    col3.markdown(html_movie, unsafe_allow_html=True)
+
+
+    # ! amazon column
+    image_amazon = "https://c.tenor.com/xrld-zE_4IAAAAAd/tenor.gif"
+    redirect_amazon = "https://www.amazon.com/Best-Books-of-2024-So-Far/b?ie=UTF8&node=3003015011"
+    html_amazon = f"""
+    <div style="position: relative; width: 150px; height: 150px;">
+        <a href="{redirect_amazon}" target="_blank">
+            <img src="{image_amazon}" style="width:150px;height:150px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">BOOK</div>
+        </a>
+    </div>
+    """
+
+    col4.markdown(html_amazon, unsafe_allow_html=True)
+
+    # ! steam column
+    image_steam = "https://media1.tenor.com/m/zjbXreUb5_YAAAAd/steam.gif"
+    redirect_steam = "https://store.steampowered.com/"
+
+    html_steam = f"""
+    <div style="position: relative; width: 150px; height: 150px;">
+        <a href="{redirect_steam}" target="_blank">
+            <img src="{image_steam}" style="width:150px;height:150px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); color: white; font-size: 15px; font-weight: bold;">GAME</div>
+        </a>
+    </div>
+    """
+
+    col5.markdown(html_steam, unsafe_allow_html=True)
+
 
 
 
