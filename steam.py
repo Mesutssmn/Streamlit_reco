@@ -176,25 +176,166 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+if 'active_tab' not in st.session_state:
+    st.session_state['active_tab'] = 'Home'
+
+def set_active_tab(tab_name):
+    st.session_state['active_tab'] = tab_name
+
 home_tab, steam_tab = st.tabs(["Home", "GameSelect"])
-with home_tab:
-    home_tab.header('Play Exciting Games')
 
-    col1, col2, col3 = home_tab.columns(3)
+with home_tab.container():
+    set_active_tab('Home')
 
-    with col3:
-        home_tab.markdown(
-            """
-            <iframe src="https://games.construct.net/1690/latest" width="100%" height="600" align="right"></iframe>
-            """,
-            unsafe_allow_html=True,
-        )
-    with col2:
-        home_tab.write("### Top Upcoming Games")
+    col1, col2, col3 = home_tab.columns([2,2,1])  # Genişlikleri ayarlamak için oranları değiştirdik
+
+    with col1:
+        col1.markdown(
+        """
+        <style>
+        .custom-header {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .custom-divider {
+            width: 50%;
+            border: 1px solid #0002d1;
+            margin-bottom: 1rem;
+        }
+        </style>
+        <div class="custom-header">Top Games</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
         if not upcoming_games_df.empty:
-            home_tab.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+            col1.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
         else:
-            home_tab.write("No upcoming games found.")
+            col1.write("No upcoming games found.")
+
+    with col2:
+        col2.markdown(
+        """
+        <style>
+        .custom-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .custom-divider {
+            width: 100%;
+            border: 1px solid #0002d1;
+            margin-bottom: 1rem;
+        }
+        </style>
+        <div class="custom-header">Play a Game</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
+        
+
+
+        
+        col2.markdown(
+    """
+    <style>
+    .iframe-container {
+        width: 150%;
+        height: 430px;
+        display: flex;
+        justify-content: left;
+        align-items: left;
+    }
+    .iframe-container iframe {
+        width: 70%;
+        height: 100%;
+        border: none;
+    }
+    </style>
+    <div class="iframe-container">
+        <iframe src="https://games.construct.net/1690/latest"></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.markdown(
+        """
+        <style>
+        .custom-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .custom-divider {
+            width: 100%;
+            border: 1px solid #0002d1;
+            margin-bottom: 1rem;
+        }
+        </style>
+        <div class="custom-header">If You Want to Do Something Else, You Can Visit These Pages.</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )      
+
+
+col1, col2, col3, col4, col5 = home_tab.columns(5)
+
+col1.markdown(
+    """
+    <div class="resizable-image">
+        <img src="https://media1.tenor.com/m/t1KbzWJ9sGkAAAAd/elden-ring-action-rpg.gif" alt="Resim">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+col2.markdown(
+    """
+    <div class="resizable-image">
+        <img src="https://media1.tenor.com/m/Z5t0eehZn3gAAAAd/darksiders_2-prince-of-persia.gif" alt="Resim">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+col3.markdown(
+    """
+    <div class="resizable-image">
+        <img src="https://media1.tenor.com/m/sctssthXIm8AAAAC/play-game.gif" alt="Resim">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+col4.markdown(
+    """
+    <div class="resizable-image">
+        <img src="https://media1.tenor.com/m/BDValJzc6P4AAAAC/rdr2.gif" alt="Resim">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+col5.markdown(
+    """
+    <div class="resizable-image">
+        <img src="https://media1.tenor.com/m/COG1mdmj0X0AAAAd/swtor-the-old-republic.gif" alt="Resim">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+    
+
+
+
 
 
 # Steam Tab
@@ -265,7 +406,7 @@ with steam_tab:
                         st.session_state.recommendations_df['genres'].str.contains(genre_pattern, na=False)]
 
                     if filtered_recommendations_df.empty:
-                        st.warning("There is no any result for this genre.")
+                        st.warning("There is no result for these genres.")
                     else:
                         for index, game_col in enumerate(st.columns(5)):
                             if index < len(filtered_recommendations_df):
