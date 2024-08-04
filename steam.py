@@ -174,7 +174,12 @@ if 'active_tab' not in st.session_state:
 def set_active_tab(tab_name):
     st.session_state['active_tab'] = tab_name
 
-home_tab, steam_tab = st.tabs(["Home", "GameSelect"])
+
+
+
+
+
+home_tab, steam_tab = st.tabs(["Home", "Recommender"])
 
 with home_tab.container():
     set_active_tab('Home')
