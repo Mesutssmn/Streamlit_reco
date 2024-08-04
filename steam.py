@@ -55,8 +55,8 @@ cosine_sim_game = calculate_cosine_sim(game)
 volume = st.slider("Ses Seviyesi", 0.0, 1.0, 0.2)
 
 music_html = f"""
-<audio id="background-music" autoplay loop style="display:none;">
-  <source src="https://soundfxcenter.com/video-games/counter-strike/8d82b5_Counter_Strike_AK_47_Bolt_Pull_Sound_Effect.mp3" type="audio/mpeg">
+<audio id="background-music" autoplay style="display:none;">
+  <source src="https://soundfxcenter.com/movies/star-wars/8d82b5_Star_Wars_Cantina_Theme_Song.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 <script>
