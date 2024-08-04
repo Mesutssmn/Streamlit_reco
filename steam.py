@@ -172,7 +172,7 @@ with home_tab.container():
 with home_tab:
         home_tab.markdown(
         """
-        <div class="title-background">Game Trailers</div>
+        <div class="title-background">Game News</div>
         <div class="custom-divider"></div>
         """,
         unsafe_allow_html=True,
@@ -188,26 +188,25 @@ home_tab.markdown(
     """
     <style>
     .title-background {
-        background-color: #A0622D; /* Background color */
+        background-color: #A0622D;
         color: black; /* Text color */
-        padding: 10px; /* Padding for spacing */
-        text-align: center; /* Center align text */
-        border-radius: 100px; /* Rounded corners */
-        font-size: 32px; /* Font size */
-        font-weight: bold; /* Font weight */
+        padding: 10px;
+        text-align: center; 
+        border-radius: 100px;
+        font-size: 32px;
+        font-weight: bold; 
     }
     .upcoming-games-table {
-        background-color: #54649; /* Background color */
+        background-color: #54649;
         color: white ; /* Text color */
-        padding: 5px; /* Padding for spacing */
-        text-align: center; /* Text align */
-        font-size: 15px; /* Font size */
-        font-weight: bold; /* Font weight */
+        padding: 5px; 
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold; 
     }
-    /* Responsive düzenleme */
     @media (max-width: 1200px) {
         iframe {
-            height: 300px; /* Daha küçük ekranlar için iframe yüksekliği */
+            height: 300px; 
         }
         .title-background {
             font-size: 24px; /* Daha küçük ekranlar için font boyutu */
@@ -228,7 +227,6 @@ home_tab.markdown(
     unsafe_allow_html=True
 )
 
-# İlk satırdaki sütunlar
 col1, col2= home_tab.columns([1, 1])
 
 col1.markdown(
@@ -245,20 +243,7 @@ col2.markdown(
     unsafe_allow_html=True
 )
 
-# Boşluk ekleme
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
 
-home_tab.markdown(
-        """
-        <div class="title-background">Game News</div>
-        <div class="custom-divider"></div>
-        """,
-        unsafe_allow_html=True,
-    )
 home_tab.write("")
 home_tab.write("")
 home_tab.write("")
