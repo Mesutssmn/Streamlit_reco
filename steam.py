@@ -58,7 +58,6 @@ music_html = """
 </audio>
 """
 
-@st.cache_data
 st.markdown(music_html, unsafe_allow_html=True)
 
 st.markdown(
