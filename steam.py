@@ -51,19 +51,11 @@ def calculate_cosine_sim(dataframe):
 cosine_sim_game = calculate_cosine_sim(game)
 
 music_html = """
-<audio id="background-music" autoplay controls style="display:none;">
-  <source src="https://soundfxcenter.com/movies/matrix/8d82b5_Matrix_Welcome_To_The_Real_World_Sound_Effect.mp3" type="audio/mpeg">
+<audio autoplay style="display:none;">
+  <source src="https://soundfxcenter.com/video-games/counter-strike/8d82b5_Counter_Strike_AK_47_Bolt_Pull_Sound_Effect.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-<script>
-function setVolume() {
-  var audio = document.getElementById("background-music");
-  var volumeControl = document.getElementById("volume-control");
-  audio.volume = volumeControl.value;
-}
-</script>
 """
-
 st.markdown(music_html, unsafe_allow_html=True)
 
 # Volume control slider
