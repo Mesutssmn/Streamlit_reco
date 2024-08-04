@@ -194,29 +194,42 @@ with home_tab:
         home_tab.write("")
         home_tab.write("")
 
-col1, col2, col3 = home_tab.columns([1, 0.8, 1])
+ col1, col2, col3 = home_tab.columns([1,0.8,1])
 
-col1.markdown(
+        col1.markdown(
+        """
+        <iframe width="550" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
+        if not upcoming_games_df.empty:
+            col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        else:
+            col2.write("No upcoming games found.")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        home_tab.write("")
+        col3.markdown(
+        """
+        <iframe width="600" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
+        home_tab.markdown(
     """
-    <iframe width="100%" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    """,
-    unsafe_allow_html=True
-)
-
-if not upcoming_games_df.empty:
-    col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
-else:
-    col2.write("No upcoming games found.")
-
-home_tab.write("")  # Bu satırlar gereksiz gibi görünüyor, silebilirsin
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-
-col3.markdown(
-    """
-    <iframe width="100%" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <style>
+    .title-background {
+        background-color: #A0622D; /* Background color */
+        color: black; /* Text color */
+        padding: 10px; /* Padding for spacing */
+        text-align: center; /* Center align text */
+        border-radius: 100px; /* Rounded corners */
+        font-size: 32px; /* Font size */
+        font-weight: bold; /* Font weight */
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
