@@ -317,13 +317,14 @@ home_tab.write("")
 home_tab.markdown('<div class="title-background">Discover Your Next Adventure!</div>', unsafe_allow_html=True)
 home_tab.write("")
 home_tab.write("")
-with home_tab.container():  # 'home_tab' yerine st.container kullanın
+
+with home_tab.container(): 
 
     col1, col2, col3, col4, col5, col6 = st.columns([1, 0.45, 0.45, 0.45, 1,0.5], gap='large')
 
     # ! airbnb column
     image_airbnb = "https://media1.tenor.com/m/rsSIoLjds9UAAAAC/airbnb-door.gif"
-    redirect_airbnb = "https://animerecommendations.streamlit.app/"
+    redirect_airbnb = "https://airbnbrecommendations.streamlit.app/"
 
     html_airbnb = f"""
     <div style="position: relative; width: 150px; height: 150px;">
@@ -355,7 +356,7 @@ with home_tab.container():  # 'home_tab' yerine st.container kullanın
 
     # ! amazon column
     image_amazon = "https://c.tenor.com/xrld-zE_4IAAAAAd/tenor.gif"
-    redirect_amazon = "https://www.amazon.com/Best-Books-of-2024-So-Far/b?ie=UTF8&node=3003015011"
+    redirect_amazon = "https://book-recomendations.streamlit.app/"
     html_amazon = f"""
     <div style="position: relative; width: 150px; height: 150px;">
         <a href="{redirect_amazon}" target="_blank">
