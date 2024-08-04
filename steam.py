@@ -4,47 +4,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
 from bs4 import BeautifulSoup
+pd.set_option('colheader_justify', 'left')
 
-# HTML içeriği
-html_content = '''
-<ol class="list-collection__content--numbered list-collection__content ">
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/diablo-iv/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot1"><p class="list-item__title text-bold ">Diablo IV</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Jun 6, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/the-legend-of-zelda-tears-of-the-kingdom/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot2"><p class="list-item__title text-bold ">The Legend of Zelda: Tears of the Kingdom</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">May 12, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/star-wars-jedi-survivor/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot3"><p class="list-item__title text-bold ">Star Wars Jedi: Survivor</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Apr 28, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/final-fantasy-xvi/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot4"><p class="list-item__title text-bold ">Final Fantasy XVI</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Jun 22, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/starfield/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot5"><p class="list-item__title text-bold ">Starfield</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Sep 6, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/dead-island-2/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot6"><p class="list-item__title text-bold ">Dead Island 2</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Apr 21, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/redfall/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot7"><p class="list-item__title text-bold ">Redfall</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">May 2, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/suicide-squad-kill-the-justice-league/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot8"><p class="list-item__title text-bold ">Suicide Squad: Kill The Justice League</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Mar 26, 2024</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/street-fighter-6/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot9"><p class="list-item__title text-bold ">Street Fighter 6</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Jun 2, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-<li class="list-item width-100 overflow--hidden flexbox-row flexbox-nowrap flexbox-align-center "><div class="list-item__content flexbox-flex-even "><a href="/games/assassins-creed-mirage/" class="js-click-tag" data-click-tag="front_door|topgames|overall|slot10"><p class="list-item__title text-bold ">Assassin's Creed Mirage</p></a><div class="card-metadata "><div class="symbol-text hide-icon"><i class=" "><svg width="79.91" height="80" viewBox="0 0 79.91 80" aria-hidden="true" class="symbol symbol-comment text-medium "><path d="M39.83 0C17.73 0 0 14.33 0 32c0 13.12 10.17 24.39 24.17 29.33V80L40 64c22.09 0 39.91-14.33 39.91-32S61.92 0 39.83 0Z"></path></svg></i><span class="text-small ">Oct 5, 2023</span></div></div><div class="dn"><span id="_qualtrics_release_indicator">released</span></div></div></li>
-</ol>
-'''
 
-# BeautifulSoup kullanarak HTML içeriğini parse etme
-soup = BeautifulSoup(html_content, 'html.parser')
-games_list = soup.find_all('li', class_='list-item')
+upcoming_games_df = pd.read_csv("upcoming_games.csv")
+df_most_anticipated_games = pd.read_csv("most_anticipated_games.csv")
 
-# Oyun bilgilerini toplama
-games_data = []
-base_url = "https://www.gamespot.com"
-for game in games_list:
-    title_tag = game.find('p', class_='list-item__title')
-    date_tag = game.find('span', class_='text-small')
-    link_tag = game.find('a', href=True)
-    if title_tag and date_tag and link_tag:
-        title = title_tag.text.strip()
-        release_date = date_tag.text.strip()
-        game_url = base_url + link_tag['href']
-        games_data.append(
-            {"Game Title": f"<a href='{game_url}' target='_blank'>{title}</a>", "Release Date": release_date})
-
-# DataFrame oluşturma
-upcoming_games_df = pd.DataFrame(games_data)
-
-# Çıkış tarihini datetime formatına çevirme ve sıralama
 upcoming_games_df['Release Date'] = pd.to_datetime(upcoming_games_df['Release Date'])
 upcoming_games_df = upcoming_games_df.sort_values('Release Date', ascending=False)
+
+df_most_anticipated_games['Release Date'] = pd.to_datetime(df_most_anticipated_games['Release Date'])
+df_most_anticipated_games = df_most_anticipated_games.sort_values('Release Date', ascending=False)
 
 
 def get_image_from_steam(steam_id):
@@ -54,7 +24,15 @@ def get_image_from_steam(steam_id):
         return url
     else:
         return None
-
+    
+def render_fixed_size_table(df, table_height=400, table_width=250):
+    html_table = df.to_html(escape=False, index=False)
+    html_code = f"""
+    <div style="height:{table_height}px; width:{table_width}px; overflow:auto;">
+        {html_table}
+    </div>
+    """
+    return html_code
 
 # Sayfa ayarları
 st.set_page_config(layout='wide', page_title='Game Recommender', page_icon="🦈")
@@ -187,7 +165,7 @@ with home_tab.container():
 with home_tab:
         home_tab.markdown(
         """
-        <div class="title-background">Top Games</div>
+        <div class="title-background">Game Trailers</div>
         <div class="custom-divider"></div>
         """,
         unsafe_allow_html=True,
@@ -198,8 +176,6 @@ with home_tab:
         home_tab.write("")
         home_tab.write("")
         home_tab.write("")
-        col1, col2, col3 = home_tab.columns([1.1,0.7,1])
-
 
 home_tab.markdown(
     """
@@ -211,6 +187,14 @@ home_tab.markdown(
         text-align: center; /* Center align text */
         border-radius: 100px; /* Rounded corners */
         font-size: 32px; /* Font size */
+        font-weight: bold; /* Font weight */
+    }
+    .upcoming-games-table {
+        background-color: #54649; /* Background color */
+        color: white ; /* Text color */
+        padding: 5px; /* Padding for spacing */
+        text-align: center; /* Text align */
+        font-size: 15px; /* Font size */
         font-weight: bold; /* Font weight */
     }
     /* Responsive düzenleme */
@@ -237,43 +221,78 @@ home_tab.markdown(
     unsafe_allow_html=True
 )
 
+# İlk satırdaki sütunlar
+col1, col2= home_tab.columns([1, 1])
+
 col1.markdown(
     """
-    <iframe width="100%" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="100%" height="420" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     """,
     unsafe_allow_html=True
 )
 
+col2.markdown(
+    """
+    <iframe width="100%" height="420" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    """,
+    unsafe_allow_html=True
+)
+
+# Boşluk ekleme
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+
+home_tab.markdown(
+        """
+        <div class="title-background">Game News</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+
+
+# İkinci satırdaki sütunlar
+col1, col2 = home_tab.columns([1, 1])
 
 if not upcoming_games_df.empty:
-    col2.markdown('<div class="upcoming-games-table">' + upcoming_games_df.to_html(escape=False, index=False) + '</div>', unsafe_allow_html=True)
+    col1.markdown('<div class="upcoming-games-table">' + render_fixed_size_table(upcoming_games_df, 420, col1.width) + '</div>', unsafe_allow_html=True)
 else:
-    col2.write("No upcoming games found.")
+    col1.write("No upcoming games found.")
+
+if not df_most_anticipated_games.empty:
+    col2.markdown('<div class="upcoming-games-table">' + render_fixed_size_table(df_most_anticipated_games, 420, col3.width) + '</div>', unsafe_allow_html=True)
+else:
+    col2.write("No most anticipated games found.")
 
 
 
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
-home_tab.write("")
 
-
-
-col3.markdown(
-    """
-    <iframe width="100%" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    """,
-    unsafe_allow_html=True
-)
 
 
 home_tab.markdown('<div class="title-background">Play a Game</div>', unsafe_allow_html=True)
 
+
+
+
+
+
 home_tab.write("")
 home_tab.write("")
 home_tab.write("")
 home_tab.write("")
+
+
+
+
 
 home_tab.markdown(
     """
@@ -340,7 +359,7 @@ with home_tab.container():
 
     # ! imdb column
     image_movie = 'https://media.tenor.com/HJTXKCtOYwgAAAAM/perfect-popcorn.gif'
-    redirect_movie = "https://appent-g9qe2nhwhrvvgnhkqybvzq.streamlit.app/"
+    redirect_movie = "https://miuulmovierecommender.streamlit.app/"
 
     html_movie = f"""
     <div style="position: relative; width: 150px; height: 150px;">
@@ -457,24 +476,52 @@ with steam_tab:
                     if filtered_recommendations_df.empty:
                         st.warning("There is no result for these genres.")
                     else:
-                        for index, game_col in enumerate(st.columns(5)):
-                            if index < len(filtered_recommendations_df):
-                                game_row = filtered_recommendations_df.iloc[index]
-                                game_id = game_row['app_id']
-                                game_title = game_row['title']
-                                game_rating = game_row['rating']  # Rating kolonunu ekle
+                        for index, game_row in enumerate(filtered_recommendations_df.itertuples()):
+                            if index < 5:
+                                if index == 0:
+                                    cols = st.columns(5)
+                                game_col = cols[index % 5]
+                                game_id = game_row.app_id
+                                game_title = game_row.title
+                                game_rating = game_row.rating  # Rating kolonunu ekle
+                                game_col.markdown(
+                                    f"<a href='https://store.steampowered.com/app/{game_id}' target='_blank'><img src='{get_image_from_steam(game_id)}' style='max-width:100%;'></a>",
+                                    unsafe_allow_html=True)
+                                game_col.subheader(f"**{game_title}**", divider="violet")
+                                game_col.write(f"Rating: {game_rating}")
+                            elif index < 10:
+                                if index == 5:
+                                    cols = st.columns(5)
+                                game_col = cols[index % 5]
+                                game_id = game_row.app_id
+                                game_title = game_row.title
+                                game_rating = game_row.rating  # Rating kolonunu ekle
                                 game_col.markdown(
                                     f"<a href='https://store.steampowered.com/app/{game_id}' target='_blank'><img src='{get_image_from_steam(game_id)}' style='max-width:100%;'></a>",
                                     unsafe_allow_html=True)
                                 game_col.subheader(f"**{game_title}**", divider="violet")
                                 game_col.write(f"Rating: {game_rating}")
                 else:
-                    for index, game_col in enumerate(st.columns(5)):
-                        if index < len(st.session_state.recommendations_df):
-                            game_row = st.session_state.recommendations_df.iloc[index]
-                            game_id = game_row['app_id']
-                            game_title = game_row['title']
-                            game_rating = game_row['rating']  # Rating kolonunu ekle
+                    for index, game_row in enumerate(st.session_state.recommendations_df.itertuples()):
+                        if index < 5:
+                            if index == 0:
+                                cols = st.columns(5)
+                            game_col = cols[index % 5]
+                            game_id = game_row.app_id
+                            game_title = game_row.title
+                            game_rating = game_row.rating  # Rating kolonunu ekle
+                            game_col.markdown(
+                                f"<a href='https://store.steampowered.com/app/{game_id}' target='_blank'><img src='{get_image_from_steam(game_id)}' style='max-width:100%;'></a>",
+                                unsafe_allow_html=True)
+                            game_col.subheader(f"**{game_title}**", divider="violet")
+                            game_col.write(f"Rating: {game_rating}")
+                        elif index < 10:
+                            if index == 5:
+                                cols = st.columns(5)
+                            game_col = cols[index % 5]
+                            game_id = game_row.app_id
+                            game_title = game_row.title
+                            game_rating = game_row.rating  # Rating kolonunu ekle
                             game_col.markdown(
                                 f"<a href='https://store.steampowered.com/app/{game_id}' target='_blank'><img src='{get_image_from_steam(game_id)}' style='max-width:100%;'></a>",
                                 unsafe_allow_html=True)
@@ -482,3 +529,4 @@ with steam_tab:
                             game_col.write(f"Rating: {game_rating}")
             except KeyError:
                 st.error("Please select a valid game.")
+
