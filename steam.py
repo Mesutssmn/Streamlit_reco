@@ -55,7 +55,7 @@ volume = st.slider("Ses Seviyesi", 0.0, 1.0, 0.2)
 
 music_html = f"""
 <audio id="background-music" autoplay style="display:none;">
-  <source src="https://soundfxcenter.com/movies/matrix/8d82b5_Matrix_Welcome_To_The_Real_World_Sound_Effect.mp3" type="audio/mpeg">
+  <source src="https://soundfxcenter.com/video-games/counter-strike/8d82b5_Counter_Strike_AWP_Bolt_Sound_Effect.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 <script>
