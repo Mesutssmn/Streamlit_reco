@@ -56,7 +56,7 @@ volume = st.slider("Ses Seviyesi", 0.0, 1.0, 0.2)
 
 music_html = f"""
 <audio id="background-music" autoplay style="display:none;">
-  <source src="https://soundfxcenter.com/movies/star-wars/8d82b5_Star_Wars_Cantina_Theme_Song.mp3" type="audio/mpeg">
+  <source src="https://soundfxcenter.com/movies/matrix/8d82b5_Matrix_Welcome_To_The_Real_World_Sound_Effect.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 <script>
