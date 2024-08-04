@@ -1,0 +1,14 @@
+# Boşluk ekleme
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+
+home_tab.markdown(
+        """
+        <div class="title-background">Game News</div>
+        <div class="custom-divider"></div>
+        """,
+        unsafe_allow_html=True,
+    )
