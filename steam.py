@@ -193,29 +193,39 @@ with home_tab:
         home_tab.write("")
         home_tab.write("")
         home_tab.write("")
-        col1, col2, col3 = home_tab.columns([1,0.8,1])
+        col1, col2, col3 = home_tab.columns([1.1,0.7,1])
 
 col1.markdown(
-        """
-        <iframe width="550" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        """,
-        unsafe_allow_html=True
-    )
-        if not upcoming_games_df.empty:
-            col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
-        else:
-            col2.write("No upcoming games found.")
-        home_tab.write("")
-        home_tab.write("")
-        home_tab.write("")
-        home_tab.write("")
-        home_tab.write("")
-        col3.markdown(
-        """
-        <iframe width="600" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        """,
-        unsafe_allow_html=True
-    )
+    """
+    <iframe width="100%" height="430" src="https://www.youtube.com/embed/iaJ4VVFGIa8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    """,
+    unsafe_allow_html=True
+)
+
+
+if not upcoming_games_df.empty:
+    col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+else:
+    col2.write("No upcoming games found.")
+
+
+
+
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+
+
+
+col3.markdown(
+    """
+    <iframe width="100%" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    """,
+    unsafe_allow_html=True
+)
+
 
 home_tab.markdown(
     """
@@ -269,14 +279,14 @@ home_tab.markdown(
     """,
     unsafe_allow_html=True
 )
-)
-        home_tab.markdown('<div class="title-background">Play a Game</div>', unsafe_allow_html=True)
 
-        home_tab.write("")
-        home_tab.write("")
-        home_tab.write("")
-        home_tab.write("")
-        home_tab.markdown(
+home_tab.markdown('<div class="title-background">Play a Game</div>', unsafe_allow_html=True)
+
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.write("")
+home_tab.markdown(
     """
     <style>
     .iframe-container {
@@ -298,14 +308,14 @@ home_tab.markdown(
     unsafe_allow_html=True,
 )
     
-        home_tab.markdown(
-            """
-            <div class="iframe-container">
-                <iframe src="https://games.construct.net/1690/latest"></iframe>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+home_tab.markdown(
+    """
+    <div class="iframe-container">
+        <iframe src="https://games.construct.net/1690/latest"></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 home_tab.write("")
