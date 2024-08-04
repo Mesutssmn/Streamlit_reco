@@ -6,16 +6,6 @@ import requests
 from bs4 import BeautifulSoup
 pd.set_option('colheader_justify', 'left')
 
-music_html = """
-<audio controls autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-"""
-
-# Display the music player in Streamlit app
-st.markdown(music_html, unsafe_allow_html=True)
-
 upcoming_games_df = pd.read_csv("upcoming_games.csv")
 df_most_anticipated_games = pd.read_csv("most_anticipated_games.csv")
 
@@ -60,6 +50,16 @@ def calculate_cosine_sim(dataframe):
 
 
 cosine_sim_game = calculate_cosine_sim(game)
+
+music_html = """
+<audio autoplay loop style="display:none;">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+"""
+
+# Inject the HTML code into the Streamlit app
+st.markdown(music_html, unsafe_allow_html=True)
 
 st.markdown(
     """
