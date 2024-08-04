@@ -57,7 +57,7 @@ def get_image_from_steam(steam_id):
 
 
 # Sayfa ayarları
-st.set_page_config(layout='wide', page_title='Steam')
+st.set_page_config(layout='wide', page_title='Game', page_icon="🦈")
 
 # Load the data
 game = pd.read_csv('content2_mst.csv')
