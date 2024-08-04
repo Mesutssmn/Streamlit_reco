@@ -57,7 +57,7 @@ def get_image_from_steam(steam_id):
 
 
 # Sayfa ayarları
-st.set_page_config(layout='wide', page_title='Game', page_icon="🦈")
+st.set_page_config(layout='wide', page_title='Game Recommender', page_icon="🦈")
 
 # Load the data
 game = pd.read_csv('content2_mst.csv')
@@ -226,23 +226,6 @@ col3.markdown(
     unsafe_allow_html=True
 )
 
-
-home_tab.markdown(
-    """
-    <style>
-    .title-background {
-        background-color: #A0622D; /* Background color */
-        color: black; /* Text color */
-        padding: 10px; /* Padding for spacing */
-        text-align: center; /* Center align text */
-        border-radius: 100px; /* Rounded corners */
-        font-size: 32px; /* Font size */
-        font-weight: bold; /* Font weight */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 home_tab.markdown(
     """
