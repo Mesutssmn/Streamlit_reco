@@ -241,10 +241,9 @@ col1.markdown(
 
 
 if not upcoming_games_df.empty:
-    col2.write(upcoming_games_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+    col2.markdown('<div class="upcoming-games-table">' + upcoming_games_df.to_html(escape=False, index=False) + '</div>', unsafe_allow_html=True)
 else:
     col2.write("No upcoming games found.")
-
 
 
 
@@ -270,6 +269,7 @@ home_tab.write("")
 home_tab.write("")
 home_tab.write("")
 home_tab.write("")
+
 home_tab.markdown(
     """
     <style>
