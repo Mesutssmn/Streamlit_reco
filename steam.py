@@ -57,7 +57,7 @@ music_html = """
   Your browser does not support the audio element.
 </audio>
 <script>
-document.getElementById('background-music').volume = 0.2;
+document.getElementById('background-music').volume = 0.6;
 </script>
 """
 
