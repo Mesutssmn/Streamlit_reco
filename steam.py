@@ -56,9 +56,6 @@ music_html = """
   <source src="https://soundfxcenter.com/video-games/counter-strike/8d82b5_Counter_Strike_AK_47_Bolt_Pull_Sound_Effect.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-<script>
-document.getElementById('background-music').volume = 10;
-</script>
 """
 
 st.markdown(music_html, unsafe_allow_html=True)
