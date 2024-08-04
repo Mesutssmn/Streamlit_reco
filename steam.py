@@ -58,15 +58,6 @@ music_html = """
 """
 st.markdown(music_html, unsafe_allow_html=True)
 
-# Volume control slider
-volume_html = """
-<input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.2" oninput="setVolume()">
-<label for="volume-control">Ses Seviyesi</label>
-"""
-
-# Inject the volume control slider into the Streamlit app
-st.markdown(volume_html, unsafe_allow_html=True)
-
 
 st.markdown(
     """
