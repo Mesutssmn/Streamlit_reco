@@ -215,7 +215,7 @@ col3.markdown(
     """
     <iframe width="600" height="430" src="https://www.youtube.com/embed/kfYEiTdsyas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 home_tab.markdown(
