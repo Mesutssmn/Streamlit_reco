@@ -1,6 +1,2 @@
 [theme]
-primaryColor = "#A0622D"  # Ana renk
-backgroundColor = "#f0f2f6"  # Arka plan rengi
-secondaryBackgroundColor = "#e0e2e6"  # İkinci arka plan rengi
-textColor = "#000000"  # Metin rengi
-font = "sans serif"  # Yazı tipi
+base = "dark"
