@@ -37,7 +37,7 @@ def render_fixed_size_table(df, table_height=400, table_width=250):
 st.set_page_config(layout='wide', page_title='Game Recommender', page_icon="🦈")
 
 # Load the data
-game = pd.read_csv('content2_mst.csv')
+game = pd.read_csv('content_steam.csv')
 
 
 @st.cache_data
