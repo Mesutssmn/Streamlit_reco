@@ -416,7 +416,7 @@ with steam_tab:
 
     if selected_game != "Choose a Game":
         st.write("Would you like to filter the recommendations by genre?")
-        filter_by_genre = st.radio("Filter by genre!", ("No", "Yes"), index=0)
+        filter_by_genre = st.radio("Filter by genre?", ("No", "Yes"), index=0)
 
         if filter_by_genre == "Yes":
             st.session_state.filter_by_genre = True
