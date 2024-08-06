@@ -416,7 +416,7 @@ with steam_tab:
 
     if selected_game != "Choose a Game":
         st.write("Would you like to filter the recommendations by genre?")
-        filter_by_genre = st.radio("Filter by genre?", ("No", "Yes"), index=0)
+        filter_by_genre = st.radio("Filter by genre!", ("No", "Yes"), index=0)
 
         if filter_by_genre == "Yes":
             st.session_state.filter_by_genre = True
@@ -492,7 +492,7 @@ with steam_tab:
                             game_col = cols[index % 5]
                             game_id = game_row.app_id
                             game_title = game_row.title
-                            game_rating = game_row.rating  # Rating kolonunu ekle
+                            game_rating = game_row.rating
                             game_col.markdown(
                                 f"<a href='https://store.steampowered.com/app/{game_id}' target='_blank'><img src='{get_image_from_steam(game_id)}' style='max-width:100%;'></a>",
                                 unsafe_allow_html=True)
@@ -504,7 +504,7 @@ with steam_tab:
                             game_col = cols[index % 5]
                             game_id = game_row.app_id
                             game_title = game_row.title
-                            game_rating = game_row.rating  # Rating kolonunu ekle
+                            game_rating = game_row.rating
                             game_col.markdown(
                                 f"<a href='https://store.steampowered.com/app/{game_id}' target='_blank'><img src='{get_image_from_steam(game_id)}' style='max-width:100%;'></a>",
                                 unsafe_allow_html=True)
